@@ -13,3 +13,11 @@ if type -q bat
         $argv --help 2>&1 | bathelp
     end
 end
+
+if type -q fuck
+    thefuck --alias | source
+end
+
+if type -q zoxide
+    zoxide init fish | source
+end
