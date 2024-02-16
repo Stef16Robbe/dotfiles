@@ -21,3 +21,13 @@ end
 if type -q zoxide
     zoxide init fish | source
 end
+
+if type -q uv
+    alias pip "uv pip"
+    alias pip3 "uv pip"
+    alias venv "uv venv"
+end
+
+if type -q python3
+    alias activate "source .venv/bin/activate.fish"
+end
