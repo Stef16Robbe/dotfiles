@@ -1,0 +1,8 @@
+working_directory = "/home/stef/proj"
+
+[shell]
+program = "/usr/bin/fish"
+
+[font]
+normal = { family = "Hack Nerd Font", style = "Regular" }
+
