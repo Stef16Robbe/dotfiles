@@ -1,0 +1,11 @@
+theme = "everforest_dark"
+
+[editor]
+mouse = false
+bufferline = "multiple"
+
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"] # use esc for , and ;
+
+[editor.cursor-shape]
+insert = "bar"
