@@ -6,8 +6,6 @@ if type -q eza
 end
 
 if type -q bat
-    alias bat "bat --paging=never --theme=1337 --style=plain"
-
     alias bathelp "bat --language=help"
     function info
         $argv --help 2>&1 | bathelp
