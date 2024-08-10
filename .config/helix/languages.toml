@@ -13,3 +13,16 @@ indent = { tab-width = 4, unit = "    " }
 
 [language-server.rust-analyzer]
 command = "rust-analyzer"
+
+[language-server.typos]
+command = "typos-lsp"
+# Logging level of the language server. Defaults to error.
+# Run with helix -v to output LSP logs to the editor log (:log-open)
+environment = {"RUST_LOG" = "error"}
+# How typos are rendered in the editor, can be one of an Error, Warning, Info or Hint.
+# Defaults to Warning.
+config.diagnosticSeverity = "Warning"
+
+[[language]]
+name = "markdown"
+language-servers = ["typos"]
