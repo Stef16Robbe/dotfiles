@@ -5,24 +5,33 @@ formatter = { command = "yamlfmt", args = ["-"] }
 indent = { tab-width = 2, unit = "  " }
 
 [[language]]
-name = "rust"
-language-servers = ["rust-analyzer" ]
-formatter = { command = "rustfmt" }
+name = "python"
+language-id = "python"
+roots = ["pyproject.toml", ".git", ".venv/"]
+file-types = ["py", "pyi", "ipynb"]
+shebangs = ["python"]
 auto-format = true
-indent = { tab-width = 4, unit = "    " }
+language-servers = ["ruff", "basedpyright"]
 
-[language-server.rust-analyzer]
-command = "rust-analyzer"
+formatter = { command = "bash", args = [
+  "-c",
+  "uvx ruff check --fix - | uvx ruff format -"
+] }
 
-[language-server.typos]
-command = "typos-lsp"
-# Logging level of the language server. Defaults to error.
-# Run with helix -v to output LSP logs to the editor log (:log-open)
-environment = {"RUST_LOG" = "error"}
-# How typos are rendered in the editor, can be one of an Error, Warning, Info or Hint.
-# Defaults to Warning.
-config.diagnosticSeverity = "Warning"
+[language-server.ruff]
+command = "uvx"
+args = ["ruff", "server"]
+
+[language-server.basedpyright]
+command = "uvx"
+args = ["--from", "basedpyright", "basedpyright-langserver", "--stdio"]
 
 [[language]]
-name = "markdown"
-language-servers = ["typos"]
+name = "json"
+formatter = { command = 'deno', args = ["fmt", "-", "--ext", "json" ] }
+auto-format = true
+
+[[language]]
+name = "jsonc"
+formatter = { command = 'deno', args = ["fmt", "-", "--ext", "jsonc" ] }
+auto-format = true
