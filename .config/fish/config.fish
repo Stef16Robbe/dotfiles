@@ -10,6 +10,7 @@ if status is-interactive
         $HOME/.krew/bin \
         $HOME/go/bin \
         $HOME/.deno/bin \
+        /opt/podman/bin/ \
         /usr/local/go/bin/ \
         "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" \
         "/Applications/iTerm.app/Contents/Resources/utilities" \
@@ -29,6 +30,7 @@ if status is-interactive
     set -gx GIT_EXECUTABLE /opt/homebrew/bin/git
     set -gx EDITOR hx
     set -gx VISUAL hx
+    set -x XDG_CONFIG_HOME $HOME/.config
 
     if type -q zoxide
         zoxide init fish | source
@@ -45,9 +47,9 @@ if status is-interactive
         alias lla="ll --all"
     end
 
-    # if type -q starship
-    #     starship init fish | source
-    # end
+    if type -q batman
+        batman --export-env | source
+    end
 
     if type -q atuin
         # atuin init fish | source
@@ -55,13 +57,28 @@ if status is-interactive
         atuin init fish | sed "s/-k up/up/g" | source
     end
 
+    alias sfc="source ~/.config/fish/config.fish"
+    alias efc="hx ~/.config/fish/config.fish"
+    alias ehc="hx ~/.config/helix/config.toml"
+    alias ehl="hx ~/.config/helix/languages.toml"
+    alias dns-toggle='sudo ~/.toggle-dns.fish'
+
+    abbr --add bg batgrep
+
+    abbr --add cb cargo build
+    abbr --add cf cargo fmt
+    abbr --add cc cargo clippy
+    abbr --add ct cargo test
+
     abbr --add gco git checkout
-    abbr --add gc git commit
+    abbr --add gc git commit -S -s
     abbr --add gpl git pull
     abbr --add gps git push
     abbr --add gf git fetch
     abbr --add gd git diff
     abbr --add ga git add
-    abbr --add gr git remote
+    abbr --add grm git remote
+    abbr --add grs git restore
     abbr --add gb git branch
+    abbr --add gl git log
 end
